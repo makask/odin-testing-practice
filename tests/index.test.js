@@ -1,5 +1,6 @@
 const { capitalize } = require('../src/capitalize');
 const { reverseString } = require('../src/reverseString');
+const { calculator } = require('../src/calculator');
 
 describe('capitalize', () => {
   test('capitalizes the first character of a string', () => {
@@ -56,5 +57,102 @@ describe('reverseString', () => {
   });
   test('no arguments throws error', () => {
     expect(() => reverseString()).toThrow(Error);
+  });
+});
+
+describe('calculator', () => {
+  // Test addition
+  test('addition works with legal arguments', () => {
+    expect(calculator.add(1, 2)).toBe(3);
+  });
+  test('addition works with floating numbers', () => {
+    expect(calculator.add(0.2, 0.3)).toBe(0.5);
+  });
+  test('addition works with negative numbers', () => {
+    expect(calculator.add(-1, -2)).toBe(-3);
+  });
+  test('addition works with one negative number', () => {
+    expect(calculator.add(-1, 2)).toBe(1);
+  });
+  test('addition with invalid arguments throws error', () => {
+    expect(() => calculator.add(1, a)).toThrow(Error);
+  });
+  test('addition with number and string argument returns undefined', () => {
+    expect(calculator.add(1, 'a')).toBe(undefined);
+  });
+  test('addition with no arguments returns undefined', () => {
+    expect(calculator.add()).toBe(undefined);
+  });
+  // Test subtract
+  test('subtract works with legal arguments', () => {
+    expect(calculator.subtract(6, 2)).toBe(4);
+  });
+  test('subtract works with floating numbers', () => {
+    expect(calculator.subtract(0.5, 0.2)).toBe(0.3);
+  });
+  test('subtract works with negative numbers', () => {
+    expect(calculator.subtract(-5, -2)).toBe(-3);
+  });
+  test('subtract works with one negative number', () => {
+    expect(calculator.subtract(-1, 2)).toBe(-3);
+  });
+  test('subtract with invalid arguments throws error', () => {
+    expect(() => calculator.subtract(1, a)).toThrow(Error);
+  });
+  test('subtract with number and string argument returns undefined', () => {
+    expect(calculator.subtract(1, 'a')).toBe(undefined);
+  });
+  test('subtract with no arguments returns undefined', () => {
+    expect(calculator.subtract()).toBe(undefined);
+  });
+  // Test divide
+  test('divide works with legal arguments', () => {
+    expect(calculator.divide(6, 2)).toBe(3);
+  });
+  test('divide works with floating numbers', () => {
+    expect(calculator.divide(0.8, 0.2)).toBe(4);
+  });
+  test('divide works with negative numbers', () => {
+    expect(calculator.divide(-8, -2)).toBe(4);
+  });
+  test('divide works with one negative number', () => {
+    expect(calculator.divide(-6, 3)).toBe(-2);
+  });
+  test('divide with invalid arguments throws error', () => {
+    expect(() => calculator.divide(1, a)).toThrow(Error);
+  });
+  test('divide with number and string argument returns undefined', () => {
+    expect(calculator.divide(1, 'a')).toBe(undefined);
+  });
+  test('divide with no arguments returns undefined', () => {
+    expect(calculator.divide()).toBe(undefined);
+  });
+  test('dividing by zero return infinity', () => {
+    expect(calculator.divide(8, 0)).toBe(Infinity);
+  });
+  // Test multiply
+  test('multiply works with legal arguments', () => {
+    expect(calculator.multiply(3, 5)).toBe(15);
+  });
+  test('multiply works with floating numbers', () => {
+    expect(calculator.multiply(2.5, 1.3)).toBe(3.25);
+  });
+  test('multiply works with negative numbers', () => {
+    expect(calculator.multiply(-8, -2)).toBe(16);
+  });
+  test('multiply works with one negative number', () => {
+    expect(calculator.multiply(-6, 3)).toBe(-18);
+  });
+  test('multiply with invalid arguments throws error', () => {
+    expect(() => calculator.multiply(2, a)).toThrow(Error);
+  });
+  test('multiply with number and string argument returns undefined', () => {
+    expect(calculator.multiply(3, 'a')).toBe(undefined);
+  });
+  test('multiply with no arguments returns undefined', () => {
+    expect(calculator.multiply()).toBe(undefined);
+  });
+  test('multiply by zero returns 0', () => {
+    expect(calculator.multiply(8, 0)).toBe(0);
   });
 });
