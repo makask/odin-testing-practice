@@ -2,6 +2,7 @@ const { capitalize } = require('../src/capitalize');
 const { reverseString } = require('../src/reverseString');
 const { calculator } = require('../src/calculator');
 const { caesarCipher } = require('../src/caesarCipher');
+const { analyzeArray } = require('../src/analyzeArray');
 
 describe('capitalize', () => {
   test('capitalizes the first character of a string', () => {
@@ -170,5 +171,32 @@ describe('caesarCipher', () => {
   });
   test('handles punctuation', () => {
     expect(caesarCipher('Hello world!', 3)).toBe('Khoor zruog!');
+  });
+});
+
+describe('analyzeArray', () => {
+  test('calculates average, min, max, length of array', () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({
+      average: 4,
+      min: 1,
+      max: 8,
+      length: 6,
+    });
+  });
+  test('calculates average, min, max, length of array with negative numbers', () => {
+    expect(analyzeArray([-1, 0, 1])).toEqual({
+      average: 0,
+      min: -1,
+      max: 1,
+      length: 3,
+    });
+  });
+  test('empty array', () => {
+    expect(analyzeArray([])).toEqual({
+      average: NaN,
+      min: Infinity,
+      max: -Infinity,
+      length: 0,
+    });
   });
 });
