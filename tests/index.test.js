@@ -1,6 +1,7 @@
 const { capitalize } = require('../src/capitalize');
 const { reverseString } = require('../src/reverseString');
 const { calculator } = require('../src/calculator');
+const { caesarCipher } = require('../src/caesarCipher');
 
 describe('capitalize', () => {
   test('capitalizes the first character of a string', () => {
@@ -154,5 +155,20 @@ describe('calculator', () => {
   });
   test('multiply by zero returns 0', () => {
     expect(calculator.multiply(8, 0)).toBe(0);
+  });
+});
+
+describe('caesarCipher', () => {
+  test('shifts each character byh the shift factor', () => {
+    expect(caesarCipher('hello world', 3)).toBe('khoor zruog');
+  });
+  test('wraps from z to a', () => {
+    expect(caesarCipher('z', 1)).toBe('a');
+  });
+  test('keeps the same case', () => {
+    expect(caesarCipher('Hello world', 3)).toBe('Khoor zruog');
+  });
+  test('handles punctuation', () => {
+    expect(caesarCipher('Hello world!', 3)).toBe('Khoor zruog!');
   });
 });
